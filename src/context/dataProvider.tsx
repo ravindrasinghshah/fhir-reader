@@ -1,15 +1,37 @@
 "use client";
 import React, { createContext, useContext, ReactNode } from "react";
-import sampleData from "../data/sample.json";
+import _patientData from "../data/patient.json";
+import _allergyData from "../data/foodAllergy.json";
 import { FHIR } from "@/types/fhir";
-import { TransformedData, transformFHIRData } from "@/types/transformedData";
+import {
+  transformAllergyData,
+  TransformedAllergyData,
+  TransformedUserData,
+  transformFHIRData,
+} from "@/types/transformedData";
+import { Allergy } from "@/types/allergy";
 
-const DataContext = createContext<TransformedData | undefined>(undefined);
+type DataContextType =
+  | {
+      patientData: TransformedUserData;
+      allergyData: TransformedAllergyData;
+    }
+  | undefined;
+
+const DataContext = createContext<DataContextType>(undefined);
 
 export function DataProvider({ children }: { children: ReactNode }) {
-  const rawData = sampleData as unknown as FHIR;
-  const transformedData = transformFHIRData(rawData);
-  return <DataContext.Provider value={transformedData}>{children}</DataContext.Provider>;
+  const rawData = _patientData as unknown as FHIR;
+  const rawAllergyData = _allergyData as unknown as Allergy;
+
+  const patientData = transformFHIRData(rawData);
+  const allergyData = transformAllergyData(rawAllergyData);
+
+  return (
+    <DataContext.Provider value={{ patientData, allergyData }}>
+      {children}
+    </DataContext.Provider>
+  );
 }
 
 export function useData() {

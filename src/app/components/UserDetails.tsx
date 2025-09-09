@@ -6,16 +6,16 @@ type UserDetailsProps = {
 
 export default function UserDetails({ name, gender, dob }: UserDetailsProps) {
   return (
-    <div className="p-3 bg-gray-50 rounded-lg w-md">
-      <p>
+    <div className="flex justify-between w-auto">
+      <div>
         <label>Name:</label> {name}
-      </p>
-      <p>
+      </div>
+      <div>
         <label>Gender:</label> {gender}
-      </p>
-      <p>
+      </div>
+      <div>
         <label>Birthday:</label> {dob}
-      </p>
+      </div>
     </div>
   );
 }

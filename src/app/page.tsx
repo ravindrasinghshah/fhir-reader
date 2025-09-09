@@ -12,23 +12,27 @@ export default function Login() {
   };
 
   return (
-    <div className="border-2 p-6 border-emerald-200 rounded-md flex justify-center flex-col">
-      <h2 className="pb-2">Log in</h2>
-      <input
-        type="email"
-        placeholder="Enter your email address"
-        className="border-emerald-100 border-2 my-1"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        style={{ padding: "8px", marginBottom: "12px", width: "250px" }}
-      />
-      <button
-        className="p-5 bg-amber-200 cursor-pointer disabled:bg-amber-50 disabled:cursor-not-allowed "
-        onClick={handleLogin}
-        disabled={!email}
-      >
-        Log in
-      </button>
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+        <div className="border-2 p-6 border-emerald-200 rounded-md flex justify-center flex-col">
+          <h2 className="pb-2">Log in</h2>
+          <input
+            type="email"
+            placeholder="Enter your email address"
+            className="border-emerald-100 border-2 my-1"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={{ padding: "8px", marginBottom: "12px", width: "250px" }}
+          />
+          <button
+            className="p-5 bg-amber-200 cursor-pointer disabled:bg-amber-50 disabled:cursor-not-allowed "
+            onClick={handleLogin}
+            disabled={!email}
+          >
+            Log in
+          </button>
+        </div>
+      </main>
     </div>
   );
 }
